@@ -1,57 +1,80 @@
-import React from 'react';
-
+import React, { Component } from 'react';
 import ProductList from './ProductList';
 
-function Product(){
+class Product extends Component{
+
+	constructor(props){
+		super(props);
+		this.state = {
+			productsList: []
+		}
+	}
+
+	getProducts(){
+        fetch("/api/products").then(r => r.json()).then(respuesta =>{ 
+            this.setState({productsList: respuesta.data})
+        })
+    }
+
+    componentDidMount(){
+        this.getProducts()
+    }
+	
+	render(){
+
     return(
         <React.Fragment>
+			<div className="contaniner-fluid">
 				    {/*<!-- PRODUCTS LIST -->*/}
-					<h1 className="h3 mb-2 text-gray-800">All the movies in the Database</h1>
+					<h1 className="h3 mb-2 text-gray-800">All the products in the Database</h1>
 					
 					{/*<!-- DataTales Example -->*/}
 					<div className="card shadow mb-4">
 						<div className="card-body">
 							<div className="table-responsive">
-								<table className="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+								<table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
 									<thead>
 										<tr>
                                             <th>Id</th>
-                                            <th>Titulo</th>
-                                            <th>Calificación</th>
-                                            <th>Premios</th>
-                                            <th>Duración</th>
+                                            <th>Nombre</th>
+                                            <th>Descripcion</th>
+                                            <th>Precio</th>
+                                            <th>Descuento</th>
+											<th>Talles</th>
+											<th>Genero</th>
+											<th>Marca</th>
+											<th>Color</th>
+											<th>Categoria</th>
 										</tr>
 									</thead>
 									<tfoot>
 										<tr>
                                             <th>Id</th>
-                                            <th>Titulo</th>
-                                            <th>Calificación</th>
-                                            <th>Premios</th>
-                                            <th>Duración</th>
+                                            <th>Nombre</th>
+                                            <th>Descripcion</th>
+                                            <th>Precio</th>
+											<th>Descuento</th>
+											<th>Talles</th>
+											<th>Genero</th>
+											<th>Marca</th>
+											<th>Color</th>
+											<th>Categoria</th>
 										</tr>
 									</tfoot>
 									<tbody>
-										<tr>
-											<td>01</td>
-											<td>Reto al destino</td>
-											<td>20</td>
-                                            <td>15</td>
-											<td>120</td>
-										</tr>
-										<tr>
-											<td>02</td>
-											<td>La caida del halcon negro</td>
-											<td>10</td>
-											<td>18</td>
-											<td>240</td>
-										</tr>
+									{
+                                    this.state.productsList.map((product,i)=>{
+                                        return  <ProductList  {...product}  key={i} />
+                                    })
+                                }
 									</tbody>
 								</table>
 							</div>
 						</div>
-					</div>            
+					</div>     
+				</div>       
         </React.Fragment>
     )
+}
 }
 export default Product;

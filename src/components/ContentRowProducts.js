@@ -1,42 +1,42 @@
-import React from 'react';
+import React, { Component } from 'react';
 import SmallCard from './SmallCard';
+class ContentRowProducts extends Component{
+       
+	constructor(props){
+		super(props);
+		this.state = {
+			productsList: [],
+            usersList: [],
+		}
+	} 
 
-let productInDataBase = {
-    color:   "primary",
-    titulo: "Movies in Data Base",
-    valor: 21,
-    icono: "fas fa-film",
-}
+	getProducts(){
+        fetch("/api/products").then(r => r.json()).then(respuesta =>{ 
+            this.setState({productsList: respuesta.meta})
+        })
+    }
 
-let amount ={
-    color:   "success",
-    titulo: "Total awards",
-    valor: 79,
-    icono: "fas fa-award",
-}
+    getUsers(){
+        fetch("/api/users").then(r => r.json()).then(respuesta =>{ 
+            this.setState({usersList: respuesta.meta})
+        })
+    }
 
-let user = {
-    color:   "warning",
-    titulo: "Actors quantity",
-    valor: 49,
-    icono: "fas fa-user",
-}
-
-let cardProps = [productInDataBase,amount,user];
-
-
-function ContentRowProducts(){
+    componentDidMount(){
+        this.getProducts()
+        this.getUsers()
+    }
+    
+    render(){
     return (
         <React.Fragment>
         {/*<!-- Content Row -->*/}
         <div className="row">
-            {
-                cardProps.map((producto,index)=>{
-                    return <SmallCard  {...producto}  key= {index}/>
-                })
-            }      
+           <SmallCard valor={this.state.productsList.count} titulo="Products in Data Base" color="primary" icono="fas fa-box-open"/>
+           <SmallCard valor={this.state.usersList.count} titulo="Total users"  color="success" icono="fas fa-users"/>
+           <SmallCard valor={this.state.productsList.countCategories} titulo="Total categories" color="warning" icono="fas fa-list"/>
         </div>
         </React.Fragment>
     )
-}
+}  }
 export default ContentRowProducts;
