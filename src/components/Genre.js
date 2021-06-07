@@ -6,7 +6,9 @@ function Genre(props){
             <div className="col-lg-6 mb-4">
                 <div className="card text-white bg-dark  shadow">
                     <div className="card-body">
-                        {props.genre}
+                        {props.name} 
+                        <br></br>  
+                        {props.totalProducts} items
                     </div>
                 </div>
             </div>

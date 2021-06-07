@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Genre  from './Genre';
 
 let genres = [
@@ -14,7 +14,29 @@ let genres = [
     {genre: 'Musical'}
 ]
 
-function CategoriesInDb(){
+class CategoriesInDb extends Component{
+    constructor(props){
+		super(props);
+		this.state = {
+		    categoriesList: [],
+            
+		}
+	} 
+
+	getCategories(){
+        fetch("/api/products").then(r => r.json()).then(respuesta =>{ 
+            this.setState({categoriesList: respuesta.categoriesData})
+            
+        })
+    }
+	componentDidMount(){
+		this.getCategories()
+        
+	}
+    
+
+    render(){
+        let categorias=this.state.categoriesList
     return (
         <React.Fragment>
                 {/*<!-- Categories in DB -->*/}
@@ -26,8 +48,8 @@ function CategoriesInDb(){
                         <div className="card-body">
                             <div className="row">
                                 {
-                                    genres.map((genre,index)=>{
-                                        return  <Genre  {...genre}  key={index} />
+                                    categorias.map((category,index)=>{
+                                        return  <Genre  {...category}  key={index} />
                                     })
                                 }
                             </div>
@@ -38,5 +60,5 @@ function CategoriesInDb(){
         </React.Fragment>
     )
 
-}
+}}
 export default CategoriesInDb;
