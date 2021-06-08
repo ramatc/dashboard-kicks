@@ -1,5 +1,6 @@
 import React from 'react';
 import image from '../assets/images/kicks-logo.png';
+import {Link , Route, Switch} from 'react-router-dom';
 
 function SideBar(){
     return(
@@ -19,9 +20,10 @@ function SideBar(){
 
                 {/*<!-- Nav Item - Dashboard -->*/}
                 <li className="nav-item active">
-                    <a className="nav-link" href="/">
+                    <Link className="nav-link" to="/">
                         <i className="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Dashboard - Kicks</span></a>
+                        <span>Dashboard - Kicks</span>
+                    </Link>
                 </li>
 
                 {/*<!-- Divider -->*/}
@@ -32,24 +34,26 @@ function SideBar(){
 
                 {/*<!-- Nav Item - Pages -->*/}
                 <li className="nav-item">
-                    <a className="nav-link collapsed" href="/">
+                    <Link className="nav-link collapsed" to="/Product">
                         <i className="fas fa-fw fa-folder"></i>
                         <span>Products</span>
-                    </a>
+                    </Link>
                 </li>
 
                 {/*<!-- Nav Item - Charts -->*/}
                 <li className="nav-item">
-                    <a className="nav-link" href="/">
+                    <Link className="nav-link" to="/CategoriesInDb">
                         <i className="fas fa-fw fa-chart-area"></i>
-                        <span>Categories</span></a>
+                        <span>Categories</span>
+                    </Link>
                 </li>
 
                 {/*<!-- Nav Item - Tables -->*/}
                 <li className="nav-item">
-                    <a className="nav-link" href="/">
+                    <Link className="nav-link" to="/LastProductInDb">
                         <i className="fas fa-fw fa-table"></i>
-                        <span>Last Products</span></a>
+                        <span>Last Products</span>
+                    </Link>
                 </li>
 
                 {/*<!-- Divider -->*/}
