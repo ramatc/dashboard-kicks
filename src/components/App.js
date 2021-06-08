@@ -1,10 +1,11 @@
 import React from 'react';
 import SideBar from './SideBar';
 import ContentWrapper from './ContentWrapper';
-import {NavLink, Link , Route, Switch} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 import Product from './Product';
 import CategoriesInDb from './CategoriesInDb';
 import LastProductInDb from './LastProductInDb';
+import ProductListCart from "./ProductListCart"
 import Error from './Error';
 
 
@@ -24,6 +25,8 @@ function App() {
           <Route path="/CategoriesInDb" component={CategoriesInDb}/>
 
           <Route path="/LastProductInDb" component={LastProductInDb}/>
+          
+          <Route path="/ProductListCart" component={ProductListCart}/>
 
           <Route component={Error}/>
 

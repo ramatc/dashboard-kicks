@@ -1,19 +1,5 @@
 import React, { Component } from 'react';
-import Genre  from './Genre';
-
-let genres = [
-    {genre: 'Acción'},
-    {genre: 'Animación'},
-    {genre: 'Aventura'},
-    {genre: 'Ciencia Ficción'},
-    {genre: 'Comedia'},
-    {genre: 'Documental'},
-    {genre: 'Drama'},
-    {genre: 'Fantasia'},
-    {genre: 'Infantiles'},
-    {genre: 'Musical'}
-]
-
+import Category  from './Category';
 class CategoriesInDb extends Component{
     constructor(props){
 		super(props);
@@ -34,9 +20,8 @@ class CategoriesInDb extends Component{
         
 	}
     
-
     render(){
-        let categorias=this.state.categoriesList
+        let categorias = this.state.categoriesList
     return (
         <React.Fragment>
                 {/*<!-- Categories in DB -->*/}
@@ -49,7 +34,7 @@ class CategoriesInDb extends Component{
                             <div className="row">
                                 {
                                     categorias.map((category,index)=>{
-                                        return  <Genre  {...category}  key={index} />
+                                        return  <Category  {...category}  key={index} />
                                     })
                                 }
                             </div>

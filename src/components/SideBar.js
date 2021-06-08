@@ -1,6 +1,6 @@
 import React from 'react';
 import image from '../assets/images/kicks-logo.png';
-import {Link , Route, Switch} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 function SideBar(){
     return(
@@ -9,11 +9,11 @@ function SideBar(){
             <ul className="navbar-nav bg-gradient-secondary sidebar sidebar-dark accordion" id="accordionSidebar">
 
                 {/*<!-- Sidebar - Brand -->*/}
-                <a className="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+                <Link className="sidebar-brand d-flex align-items-center justify-content-center" to="/">
                     <div className="sidebar-brand-icon">
                         <img className="w-100" src={image} alt="Digital House"/>
                     </div>
-                </a>
+                </Link>
 
                 {/*<!-- Divider -->*/}
                 <hr className="sidebar-divider my-0"/>
@@ -53,6 +53,14 @@ function SideBar(){
                     <Link className="nav-link" to="/LastProductInDb">
                         <i className="fas fa-fw fa-table"></i>
                         <span>Last Products</span>
+                    </Link>
+                </li>
+
+                 {/*<!-- Nav Item - Tables -->*/}
+                 <li className="nav-item">
+                    <Link className="nav-link" to="/ProductListCart">
+                        <i className="fas fa-fw fa-shopping-cart"></i>
+                        <span>Products in Cart</span>
                     </Link>
                 </li>
 
